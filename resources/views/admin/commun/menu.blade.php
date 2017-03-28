@@ -5,7 +5,7 @@
             <li><a href="{{ route("admin.create") }}">Ajouter un utilisateur</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ route("deconnexion") }}">Déconnexion</a></li>
+            <li><a href="{{ route("deconnexion") }}">Déconnexion <span class="glyphicon glyphicon-off"></span></a></li>
         </ul>
     </div>
 </nav>
