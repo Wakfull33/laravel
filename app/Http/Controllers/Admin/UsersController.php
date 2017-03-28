@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\User;
 use Illuminate\Http\Request;
+use App\User;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -21,7 +22,7 @@ class UsersController extends Controller
         $users = User::get();
         $users->load("tags");
         $users->load("commentaires");
-        return view("front/users/index", compact("users"));  //on passe users en variable
+        return view("admin/users/index", compact("users"));  //on passe users en variable
     }
 
     /**
@@ -31,7 +32,7 @@ class UsersController extends Controller
      */
     public function create()  //url pour créer un user
     {
-
+        return view("admin/users/create");
     }
 
     /**
@@ -42,7 +43,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
+        $input = $request->all();
+        $this->validate($request, User::$rules["create"]);
+        $status_create = User::create($input);
+        if($status_create)
+            return redirect(route('admin.index', $status_create))->with("success", "Le compte à bien été créé");
+        else
+            return redirect()->back()->with("danger", "Une erreur est survenue. Veuillez recommencer.");
     }
 
     /**
@@ -54,7 +61,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view("front/users/show", compact("user"));
+        return view("admin/users/show", compact("user"));
     }
 
     /**
@@ -65,7 +72,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-
+        $user = User::findOrFail($id);
+        dd();
+        return view("admin/users/edit", compact("user"));
     }
 
     /**
@@ -81,7 +90,7 @@ class UsersController extends Controller
         $this->validate($request, User::$rules["update"]);
         $status_create = User::create($input);
         if($status_create)
-            return redirect(route('users.edit', $status_create))->with("success", "Le compte à bien été modifié");
+            return redirect(route('admin/users/edit', $status_create))->with("success", "Le compte à bien été modifié");
         else
             return redirect()->back()->with("danger", "Une erreur est survenue. Veuillez recommencer.");
     }

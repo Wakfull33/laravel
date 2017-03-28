@@ -31,7 +31,11 @@ class LoginController extends Controller
             Auth::attempt(array('email' => $input['email'], 'password' => $input['password']));
 
         if (Auth::check())
+        {
+            $current = User::where('login' == $input['login']);
+            $session = $current->toArray();
             return redirect(route('users.index'))->with("success", "Vous êtes connecté");
+        }
 
         else
             return redirect(route('login'))->with("danger", "La combinaison email/mot de passe est incorrect");

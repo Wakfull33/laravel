@@ -1,4 +1,4 @@
-@extends('front/default')
+@extends('admin/default')
 @section('content')
     <div class="row">
         <div class="box-body col-md-6">

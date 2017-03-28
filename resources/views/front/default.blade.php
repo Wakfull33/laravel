@@ -3,8 +3,7 @@
 @include('front.commun.header')   
 <body id="index" class="home page">
 <div class="wrapper">
-    @include('front.commun.menu', array('name_route' => Request::route()->getAction()["as"],
-                                            'controller' => explode(".", Request::route()->getAction()["as"])))
+    @include('front.commun.menu')
     <div class="content-wrapper">
         @include("front.commun.alert")
         <section class="content">

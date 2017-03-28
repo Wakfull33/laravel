@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentaire;
 use Illuminate\Http\Request;
+use App\User;
 
 class CommentairesController extends Controller
 {
@@ -34,7 +36,13 @@ class CommentairesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $this->validate($request, Commentaire::$rules["create"]);
+        $status_create = Commentaire::create($input);
+        if($status_create)
+            return redirect(route("users.show", $status_create))->with("success", "Le commentaire à bien été créé");
+        else
+            return redirect()->back()->with("danger", "Une erreur est survenue. Veuillez recommencer.");
     }
 
     /**
