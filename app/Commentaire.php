@@ -9,15 +9,15 @@ class Commentaire extends Model
     protected $table = "commentaires";
     protected $filiable = array("id", "auteur_id", "content", "created_at", "update_at", "user_id", "active");
     public static $rules = array(
-        "created" => array (
+        "create" => array (
             "user_id" => 'required|integer',
-            "content" => 'required|integer',
+            "content" => 'required|string',
             "active" => 'boolean',
             "auteur" => 'required|string',
         ),
         "update" => array (
             "user_id" => 'required|integer',
-            "content" => 'required|integer',
+            "content" => 'required|string',
             "active" => 'boolean',
             "auteur" => 'required|string',
         ),

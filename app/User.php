@@ -16,6 +16,7 @@ class User extends Authenticatable
         "create" => array(
             'nom' => 'required|string|min:2',
             'prenom' => 'required|string|min:2',
+            'isAdmin' => 'boolean',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:2|confirmed'
         ),

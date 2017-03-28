@@ -1,6 +1,6 @@
-@extends('front/default')
+@extends('admin/default')
 @section('content')
-    <div class="container" style="background-color: #424242; border-radius: 10px 10px 10px 10px;">
+    <div class="container">
         <div class="col-md-12">
             <h1 class="h1">Login</h1>
             {!! BootForm::open()->action(route("connexion")) !!}
@@ -27,7 +27,6 @@
                 </div>
             </div>
             {!! BootForm::close() !!}
-            </br>
         </div>
     </div>
 @endsection

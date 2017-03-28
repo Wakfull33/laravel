@@ -20,6 +20,7 @@ class CreateUtilisateursTable extends Migration
             $table->string("nom");
             $table->string("prenom");
             $table->string("password");
+            $table->boolean("isAdmin");
             $table->rememberToken();
             $table->string("token")->nullable();
             $table->timestamps();

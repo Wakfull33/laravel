@@ -21,8 +21,6 @@ Route::get('/', function () {
         "uses" => "UsersController@index"
     ));*/
 
-Route::resource("users", "UsersController");
-
 //Connexion
 
 Route::resource("login", "LoginController");
@@ -44,9 +42,13 @@ Route::get("login",
         "uses" => "LoginController@index"
     ));
 
-Route::group(['prefix' => "admin",
-    'middleware' => 'auth',
-    "namespace" => "Admin"], function()
+Route::group(['middleware' => array('auth', 'admin')],
+    function()
     {
-        Route::resource("commentaires", "CommentairesController");
+        Route::resource("admin", "Admin\UsersController");
     });
+
+Route::resource("users", "UsersController");
+Route::resource("commentaire", "CommentairesController");
+
+

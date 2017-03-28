@@ -1,14 +1,15 @@
-@extends('front/default')
+@extends('admin/default')
 @section('content')
     <div class="container">
         <div><img src="http://pcdoctorti.com.br/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" class="img-responsive img-thumbnail center-block"></div>
         <h1 class="text-success text-center">{{ $user->prenom }} {{ $user->nom }}</h1>
         <div class="center-block">
             <div class="center-block" id="add_comment">
-                <form>
-                    <p class="text-center">Ajouter un commentaire</p>
+                <p class="text-center">Ajouter un commentaire</p>
+                <form method="post" action="{{ route("commentaire.store") }}">
                     <textarea rows="10" style="resize: none; border-radius: 10px 10px 10px 10px" class="form-control"></textarea>
-                    <input type="submit" rows="5" value="Envoyer" class="center-block btn btn-primary" style="resize: none"/>
+                    <input type="text" value="{{ $user }}" class="hidden"/>
+                    <input type="submit" value="Envoyer" class="center-block btn btn-danger" style="resize: none"/>
                 </form>
             </div>
         </div>
